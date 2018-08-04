@@ -1,33 +1,35 @@
+//命名空间 dialong-1,dialong-2,dialong-...
+// & 引用父选择器
+// &属性嵌套
+// &属性改名
+$bg: background;
+
 #div1{
     width:$w;
     height:$x;
     .aa{
         font-size: 12px;
     }
-    &:hover{
-        background: #000;
+        &:hover{ //.aa:hover
+            background: #000;
     }
 }
 
 
-//命名空间 dialong-1,dialong-2,dialong-...
-//& 引用父选择器
-// &-text 
-$bg: background;
-
+//  Interpolation
+//  形如 #{$val}
+//  在注释中应用
+//  在选择器中引用
+//  在属性名中引用
+// 1./* 当前的属性是:#{$fz} */
+// 2.参考控制指令for from through/in
+// 3.
 #div4{
     #{$bg}: $color;
 }
-// &属性嵌套
-//&属性改名
-@mixin xx($num, $c:#ccc) {
-    width: $num;
-    height: $num;
-    background: $c;
-}
+
 
 //@mixin  @include 配置样式  +指定名字$c: +默认名字()
-
 @mixin xx($num, $c:#ccc) {
     width: $num;
     height: $num;
@@ -40,33 +42,35 @@ $bg: background;
 }
 
 //继承  @extend   继承子选择器
-
 #div7{
     @extend #div6;
     font-size: 20px;
 }
+
+
 //@import'base/commen';  引入  样式重置  公用 _commen = commen
-
 @import 'base/common';
-//算数
-// + - * /
-//斜杠 /  left top/coverfont-size:(20px /10)
-//abs(-10px)   ceil(5.6)=6 round(5.5)=四舍五入  
-// floor=(5.5) = 5 percentage(3 /100) min() max()
 
+
+// 算数
+//  + - * /
+// 斜杠 /  left top/coverfont-size:(20px /10)
+// abs(-10px)   ceil(5.6)=6 round(5.5)=四舍五入  
+// floor=(5.5) = 5 percentage(3 /100) min() max()
 #div8{
     width: (20px / 10);
     background: #ccc url(xx.jpg) no-repeat left top/cover;
 }
 
-//字符串拼接 +
-//to-upper-case to-lower-case 大小写转换
+
+// 字符串拼接 +
+// to-upper-case to-lower-case 大小写转换
 // str-length 字符串长度
 // str-index 索引1开始
-// str-insert 插入
+// str-insert 插入 123 6
 
 
-//颜色
+// 颜色  
 // lighten          更浅
 // darken           更深
 // opacify          更不透明
@@ -77,3 +81,129 @@ $rg: rgba(255, 0, 0, 0.5 );
     background: transparentize($rg, .2);
 }
 
+
+//列表list
+// 列表长度             length(5px 10px)
+// 返回索引             index(1px solid #000,solid)
+// 取出索引对应的值      nth(5px 10px,2)
+// 合并列表             join(5px 5px,10px 10px,comma(逗号分隔)
+// >> length(2px 2px 2px 2px)
+// 4
+// >> index(1px solid black ,solid)
+// 2
+// >> join(5px 6px , 7px 8px)
+// (5px 6px 7px 8px)
+// >> join(5px 6px , 7px 8px , comma)
+// (5px, 6px, 7px, 8px)
+
+
+// map
+// $m:(light:#000,dark:#fff);
+// color:map-get($m,light);
+// 返回所有key：map-keys($m);
+// 返回所有value:map-values($m);
+// 是否包含key:map-has-key($m,light);
+// 合并map:map-merge($m,(gray:#ccc));    //merge 
+// 移除：map-remove($m,light,dark);
+$m: (light: #fff,dark:#000);
+#div10{
+    background: map-get($m,dark);
+    background: map-keys($m);
+}
+
+//布尔
+// 5px > 10px(<=  >=  ==  <  >)
+// and   or   not 
+
+
+//Data+type
+// sass -i sass终端
+// type of()
+// 1.数字：如，1、 2、 13、 10px;
+// 2.字符串：有引号字符串或无引号字符串，
+// 如"foo" 、'bar' baz;
+// 3.颜色：如，blue、 #04a3f9 、rgba(255,0,0,0.5);
+// 4.布尔型：如，true 、false;
+// 5.空值：如，null;
+// 6.值列表：用空格或者逗号分开，如，1.5em 1em 0 2em;
+// 7.map:(aa:'aa',bb:'bb')
+
+
+//控制指令
+// @if @else if @else
+// +-1
+// @for $i from 开始 through 结束{} 
+// @for $i from 开始 to      结束{} 
+// @each $var in $list{}
+// 可控制加减几个
+// @while $i{}
+
+// for from through 1-12
+$column: 12;
+@for $i from 1 through $column{
+    .col-lg-#{$i}{
+        width:percentage($i/100);
+    }
+}
+
+// for from   to   1-11
+@for $i from 1 to $column{
+    .col-lg-#{$i}{
+        width: percentage($i/100);
+    }
+}
+
+// each in 加载图片
+$icons: plus music search heart;
+
+@each $icon in $icons {
+    .glyphicon-#{$icon}{
+        background: url($icon+'.png');
+    }
+}
+
+//  while
+$i:5;
+@while $i >0 {
+    .col-md-#{$i}{
+        width: percentage($i / 100);
+    }
+    $i : $i -2;
+}
+
+//key 返回 value  无key 返回默认值
+// error return
+$map:(light:#fff,dark:#fff);
+@function get-color($color){
+    @if(map-has-key($map, $color)){
+        @return map-get($map, $color );
+    }@else if(){
+        @warn '你传入的颜色有毒';
+        @return #ccc;
+    }
+}
+
+#divkey{
+    background: get-color(light);
+}
+
+
+// 函数
+// @function name(参数1，参数2...){
+//     @return ...
+// }
+// @warn
+// @error
+@function foo($arg){
+    @if($arg == 1){
+        @return #000;
+    }@else if($arg == 2){
+        @return #fff;
+    }@else {
+        @return #0ff;
+    }
+}
+
+#div12{
+    background: foo(2);
+}
