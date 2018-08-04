@@ -1,0 +1,31 @@
+转化为css
+Sass/less
+
+Sass  =  SCSS
+.sass    .scss
+
+依赖ruby
+先安装  ruby
+ruby -v
+检测
+
+安装sass:
+add buby executables to your path 勾上
+
+联网安装:gem install sass
+
+更新 gem update sass
+卸载 gem unistall sass
+
+//sass终端
+
+sass -i 测试语法
+--------------------------------------------
+sass style/index.scss:css/index.css
+sass --watch style:css
+
+expended    展开 利于阅读  调试
+compact     紧凑  
+compressed  一行  常用     上线
+nested      嵌套
+
