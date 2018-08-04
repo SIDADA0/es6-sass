@@ -28,4 +28,4 @@ expended    展开 利于阅读  调试
 compact     紧凑  
 compressed  一行  常用     上线
 nested      嵌套
-
+sass --watch style:css--style compact

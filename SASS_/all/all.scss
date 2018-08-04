@@ -1,0 +1,79 @@
+#div1{
+    width:$w;
+    height:$x;
+    .aa{
+        font-size: 12px;
+    }
+    &:hover{
+        background: #000;
+    }
+}
+
+
+//命名空间 dialong-1,dialong-2,dialong-...
+//& 引用父选择器
+// &-text 
+$bg: background;
+
+#div4{
+    #{$bg}: $color;
+}
+// &属性嵌套
+//&属性改名
+@mixin xx($num, $c:#ccc) {
+    width: $num;
+    height: $num;
+    background: $c;
+}
+
+//@mixin  @include 配置样式  +指定名字$c: +默认名字()
+
+@mixin xx($num, $c:#ccc) {
+    width: $num;
+    height: $num;
+    background: $c;
+}
+
+#div5{
+    @include xx($c:#f00, $num:200px);
+    font-size: 20px;
+}
+
+//继承  @extend   继承子选择器
+
+#div7{
+    @extend #div6;
+    font-size: 20px;
+}
+//@import'base/commen';  引入  样式重置  公用 _commen = commen
+
+@import 'base/common';
+//算数
+// + - * /
+//斜杠 /  left top/coverfont-size:(20px /10)
+//abs(-10px)   ceil(5.6)=6 round(5.5)=四舍五入  
+// floor=(5.5) = 5 percentage(3 /100) min() max()
+
+#div8{
+    width: (20px / 10);
+    background: #ccc url(xx.jpg) no-repeat left top/cover;
+}
+
+//字符串拼接 +
+//to-upper-case to-lower-case 大小写转换
+// str-length 字符串长度
+// str-index 索引1开始
+// str-insert 插入
+
+
+//颜色
+// lighten          更浅
+// darken           更深
+// opacify          更不透明
+// transparentisize 更透明
+$rg: rgba(255, 0, 0, 0.5 );
+#div9{
+    width: percentage(3 / 100);
+    background: transparentize($rg, .2);
+}
+
