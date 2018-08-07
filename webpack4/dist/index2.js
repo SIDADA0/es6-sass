@@ -1,3 +1,4 @@
+/*! 司大大 */
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	function hotDisposeChunk(chunkId) {
 /******/ 		delete installedChunks[chunkId];
@@ -64,7 +65,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "cb36fc1d7f17a2e46d41";
+/******/ 	var hotCurrentHash = "55b291c738414a1ac429";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -799,9 +800,10 @@
   !*** ./src/index2.js ***!
   \***********************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-eval("let oDiv2 = document.querySelector('#div2');\r\noDiv2.innerHTML = 'hello welcome to index2';\n\n//# sourceURL=webpack:///./src/index2.js?");
+"use strict";
+eval("\n\nvar oDiv2 = document.querySelector('#div2');\noDiv2.innerHTML = 'hello welcome to index2';\n\n//# sourceURL=webpack:///./src/index2.js?");
 
 /***/ })
 

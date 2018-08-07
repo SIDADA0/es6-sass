@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let str = '123abc';
+        let n = 'ab';
+
+
+        let reg = /ab/;   //true   不可以用变量/n/
+        console.log(reg.test(str));
+        console.log(reg.exec(str));
+
+        let reg2 = new RegExp('ab');   //true  可以用变量
+        console.log(reg2.test(str));
+
+        //语法：一片两片三四片，落尽正则全不见
+        let reg3 = /c{2}/;      //出现次数 /abc{2}/ 是abcc
+
+
+                function getByClass(clsName) {
+            if (document.getElementsByClassName) {
+                return document.getElementsByClassName(clsName);
+            } else {
+                var allElems = document.getElementsByTagName('*');
+                var result = [];
+                for (var i = 0; i < allElems.length; i++) {
+                    // 应该使用正则表达式
+                    var reg = new RegExp('\\b' +clsName + '\\b');
+                    if (reg.test(allElems[i].className)) {
+                        result.push(allElems[i]);
+                    }
+                }
+                return result;
+            }
+        }
+    </script>
+</body>
+</html>
